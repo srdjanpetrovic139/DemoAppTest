@@ -1,4 +1,4 @@
-browser.ignoreSynchronization=true;
+
 
 describe('nopCommerce demo store', function(){
     //Lokatori
@@ -18,29 +18,53 @@ describe('nopCommerce demo store', function(){
     }
 
     //Testovi
+
     beforeEach(function(){
         browser.get('https://demo.nopcommerce.com/login?returnUrl=%2F');
+        
+    });
+
+    //positive flow
+    it('Successfull login - validate proper URL',function(){
+        browser.sleep(10000);
+        inputEmailPass('srki.bball@gmail.com','123456');
+    //     //var isClickable=EC.elementToBeClickable(myAcc)
+
+        expect(myAcc.isPresent()).toBe(true);
+
+
+    //     let expectedURL = browser.getCurrentUrl();
+    //     expect(expectedUrl).toEqual('https://demo.nopcommerce.com/');
+
+
+    //     //browser.wait(5000);
+    //     //expect(myAcc.getText).toContain('account');
+    //     //browser.wait(isClickable,2000);
+        
+        
+
+        
     });
     
     //Negative flow
-    xit('BadMailBadPass',function(){
+    it('BadMailBadPass',function(){
         inputEmailPass('marko@gmail.com','123456');
         browser.wait(EC.presenceOf(verifiBadMailPass));
         // each IT consists of expect() ...
     });
     
-    xit('EverythingButMail',function(){
+    it('EverythingButMail',function(){
         inputEmailPass('marko','123');
         browser.wait(EC.visibilityOf(wrongMail));//da li se kombinuje sa getText
         // each IT consists of expect() ...
     });
-    xit('EverythingButMail',function(){
+    it('EverythingButMail',function(){
         inputEmailPass('@@@121','@@@123');
         browser.wait(EC.visibilityOf(wrongMail));//da li se kombinuje sa getText
         // each IT consists of expect() ...
     });
     
-    xit('NoMail',function(){
+    it('NoMail',function(){
         inputEmailPass('','123');
         
         // use not.toBeUndefined() & not.toBeNull()
@@ -48,26 +72,11 @@ describe('nopCommerce demo store', function(){
         expect(wrongMail.getText()).toEqual('Please enter your email');
     });
 
-   xit('EmptyMailEmptyPass',function(){
+   it('EmptyMailEmptyPass',function(){
         inputEmailPass('','');
         expect(wrongMail.getText()).toContain('enter');
     });
 
-    //positive flow
-    it('Successfull login - validate proper URL',function(){
-        inputEmailPass('srki.bball@gmail.com','123456');
-        
-        let expectedURL = browser.getCurrentUrl();
-        
-        expect(expectedUrl).toEqual('https://demo.nopcommerce.com/');
-        
-        
-        // browser.wait(2000);
-        //browser.wait(EC.urlContains(myAcc));
-        // console.log(expectedUrl);
-        
-
-        
-    });
+    
 
 })

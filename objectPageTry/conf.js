@@ -1,13 +1,11 @@
 exports.config={
     framework:'jasmine',
-    directConnect: true,
+    directConnect:true,
     specs:['spec.js'],
-    
     capabilities:{
-        browserName: 'chrome'
+        browserName:'chrome'
     },
-    onPrepare:()=>{
+    onPrepare(){
         browser.ignoreSynchronization=true;
-        
     }
 }
