@@ -8,14 +8,14 @@ describe('Login page',function(){
 
     it('73: Fill all fields valid',function(){
         browser.sleep(6000);
-        registerPage.fullRegistration('Nikola','Nikolic','nikolanikolic123367@gmail.com','Levi9','123456','123456');
+        registerPage.fullRegistration('Nikola','Nikolic','aleksa@gmail.com','Levi9','123456','123456');
         
         expect(registerPage.regCompleted.getText()).toEqual('Your registration completed');
     });
 
     it('74: Fill all required field',function(){
         registerPage.cbNewsletter.click();
-        registerPage.requiredRegistration('Milutin','Milutinovic','mile1123385@gmail.com','123456','123456');
+        registerPage.requiredRegistration('Milutin','Milutinovic','mirko@gmail.com','123456','123456');
         
         expect(registerPage.regCompleted.getText()).toContain('completed');
     });
@@ -59,7 +59,7 @@ describe('Login page',function(){
         expect(registerPage.validationError.getText()).toContain('do not match');
     });
 
-    it('Account already exists',function(){
+    it('84: Account already exists',function(){
         registerPage.requiredRegistration('Milutin','Milutinovic','mile13385@gmail.com','123456','123456');
         expect(registerPage.validationAleradyExists.getText()).toEqual('The specified email already exists');
     });
