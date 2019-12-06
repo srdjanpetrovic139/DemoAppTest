@@ -6,31 +6,46 @@ describe('Login page',function(){
         browser.sleep(6000);
     });
 
-    it('Entering valid E-mail and Password',function(){
+    it('62: Entering valid E-mail and Password',function(){
 
         loginPage.setMailPass('srki.bball@gmail.com','123456');
         expect(loginPage.myAccBtn.isPresent()).toBe(true);
 
     });
 
-    it('Unregisterd Email and Password',function(){
+    it('63: Unregisterd Email and Password',function(){
         loginPage.setMailPass('marko@markovic.rs','123456');
         expect(loginPage.verificationUp.getText()).toContain('unsuccessful');
 
     });
 
-    it('Enternig non valid Email',function(){
+    it('64: Enternig non valid Email',function(){
         loginPage.setMailPass('marko','123');
         expect(loginPage.wrongAndNoMail.getText()).toEqual('Wrong email');
     });
 
-    it('Empty Email',function(){
+    it('65: Empty Email',function(){
         loginPage.setMailPass('','123');
         expect(loginPage.wrongAndNoMail.getText()).toEqual('Please enter your email');
     })
 
-    it('Empty Email and empty Password',function(){
+    it('66: Empty Email and empty Password',function(){
         loginPage.setMailPass('','');
         expect(loginPage.wrongAndNoMail.getText()).toEqual('Please enter your email');
     });
+
+    // it('Remember Me', function(){
+        
+    //     loginPage.email.sendKeys('srki.bball@gmail.com');
+    //     loginPage.password.sendKeys('123456');
+    //     loginPage.rememberMe.click();
+    //     loginPage.loginBtn.click();
+    //     browser.driver.close();
+    //     browser.get('https://demo.nopcommerce.com/')
+    //     expect(loginPage.myAccBtn.isPresent()).toBe(false);
+
+    // });
+
+    
+    
 });

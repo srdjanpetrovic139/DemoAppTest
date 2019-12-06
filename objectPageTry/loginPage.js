@@ -6,6 +6,7 @@ var loginPage=function(){
     this.wrongAndNoMail=element(by.id('Email-error'));
     this.myAccBtn=element(by.className('ico-account'));//from home page
     this.EC=protractor.ExpectedConditions;
+    this.rememberMe=element(by.id('RememberMe'));
 
     this.get=function(){
         browser.get('https://demo.nopcommerce.com/login');
