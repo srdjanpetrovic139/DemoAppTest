@@ -3,19 +3,20 @@ describe('Login page',function(){
     
     beforeEach(function(){
         registerPage.get();
+        
     });
 
 
     it('73: Fill all fields valid',function(){
         browser.sleep(6000);
-        registerPage.fullRegistration('Nikola','Nikolic','aleksa@gmail.com','Levi9','123456','123456');
+        registerPage.fullRegistration('Nikola','Nikolic','aleksalc@gmail.com','Levi9','123456','123456');
         
         expect(registerPage.regCompleted.getText()).toEqual('Your registration completed');
     });
 
     it('74: Fill all required field',function(){
         registerPage.cbNewsletter.click();
-        registerPage.requiredRegistration('Milutin','Milutinovic','mirko@gmail.com','123456','123456');
+        registerPage.requiredRegistration('Milutin','Milutinovic','mirkoml@gmail.com','123456','123456');
         
         expect(registerPage.regCompleted.getText()).toContain('completed');
     });
@@ -49,7 +50,7 @@ describe('Login page',function(){
         expect(registerPage.validationError.getText()).toEqual('Wrong email');
     });
 
-    it('86: Valid password',function(){
+    it('86: Password verification with less then 6 characters',function(){
         registerPage.requiredRegistration('Marko','Markovic','markovic@gmail.com','123','123456');
         expect(registerPage.validationError.getText()).toContain('must have at least 6 characters');
     });
@@ -59,7 +60,7 @@ describe('Login page',function(){
         expect(registerPage.validationError.getText()).toContain('do not match');
     });
 
-    it('84: Account already exists',function(){
+    it('87: Account already exists',function(){
         registerPage.requiredRegistration('Milutin','Milutinovic','mile13385@gmail.com','123456','123456');
         expect(registerPage.validationAleradyExists.getText()).toEqual('The specified email already exists');
     });
